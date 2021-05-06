@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enter Customer Details</title>
+    <script>
+        function calc_submit(){
+            let p = document.getElementById("calc_pr_name").value;
+            let rate = document.getElementById("calc_rate_of_int").value;
+            let t = document.getElementById("calc_time").value;
+            
+            r = rate/(100*12)
+            //EMI Amount = [P x R x (1+R)^N]/[(1+R)^N-1]
+            y = (p*r*(Math.pow((1+r),t)));
+            z = (Math.pow((1+r),(t))-1);
+            x = y/z;
+            x = x.toFixed(0);
+             document.getElementById("calc_emi").value = x;
+        }
+         function clr()
+         {
+             document.getElementById("calc_pr_name").value = "";
+             document.getElementById("calc_rate_of_int").value = "";
+             document.getElementById("calc_time").value = "";
+             document.getElementById("calc_emi").value = "";
+            
+         }
+         function copy_to_above_form(){
+             document.getElementById("pr_amt").value = document.getElementById("calc_pr_name").value;
+             document.getElementById("rate_int").value = document.getElementById("calc_rate_of_int").value;
+             document.getElementById("total_emi").value = document.getElementById("calc_emi").value;   
+         }
+         function copy_to_below_form(){
+             document.getElementById("calc_emi").value = document.getElementById("total_emi").value;
+             document.getElementById("calc_pr_name").value = document.getElementById("pr_amt").value;
+             document.getElementById("calc_rate_of_int").value = document.getElementById("rate_int").value; 
+         }
+    </script>
+  </head>
+  <body>
+      <h1>Enter Customer Details</h1>
+      <form action="add-customer.php" method="POST" enctype="multipart/form-data">
+          <fieldset  style="display: inline-block; width:0px"><legend ><b>Add New Customer</b></legend>
+        <table>
+          <tr>
+            <td><b>Name:</b></td>
+            <td><input type="text" name="name" value=""  ></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Contact:</td>
+            <td><input type="number" name="contact" value=""  ></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td><textarea name="address" rows="5" cols="19"  ></textarea></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>DOB:</td>
+            <td><input type="date" name="dob" value=""  ></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+          <tr>
+            <td>Aadhar No.</td>
+            <td><input type="number" name="aadhaar" value=""  ></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Vehicle:</td>
+            <td><input type="text" name="name" value=""  ></td>
+            
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+          <tr>
+            <td>Article No.</td>
+            <td><input type="number" name="article_no" value=""  ></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Customer ID</td>
+            <td><input type="text" name="cust_id" value="" readonly  ></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+          <tr>
+            <td>Customer Image</td>
+            <td><input type="file" name="cust_img" value=""   accept="image/png, image/jpeg"></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Aadhar Card Image:</td>
+            <td><input type="file" name="aadhar_img" value=""   accept="image/png, image/jpeg"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Mobile No.</td>
+            <td><input type="number" name="mobile" value=""  ></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Total EMI:</td>
+            <td><input type="number" name="total_emi" value=""  id = "total_emi"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Total Amount</td>
+            <td><input type="number" name="total_amt" value=""  ></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Down Payment</td>
+            <td><input type="number" name="down_pay" value=""  ></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Principal Amt: </td>
+            <td><input type="number" name="pr_amt" value=""  id="pr_amt"></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>Rate of Interest</td>
+            <td><input type="number" name="rate_of_int" value=""  id="rate_int"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><input type="submit" name="submit" value="Submit"></td>
+            <td><button type="button" onclick="copy_to_below_form()">Copy To Below Form</button></td>
+          </tr>
+        </table>
+        </fieldset>
+      </form>
+      
+      
+          <fieldset style="display: inline-block; width:0"><legend ><b>Calculate Vehicle EMI</b></legend>
+          <table float="right">
+          <tr>
+                <td>Principal Amt.</td><td><input type="number" name="calc_pr_name" value="" id="calc_pr_name" ></td>
+                <td>Rate of Interest:</td><td><input type="number" name="calc_rate_of_int" value="0" id="calc_rate_of_int"></td>
+            </tr>
+            <tr>
+                <td>Time (months):</td> <td><input type="number" name="calc_time" value="" id="calc_time"></td>
+                <td>EMI:</td> <td><input type="number" name="calc_emi" id="calc_emi"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="calc_submit" value="Submit" onClick="calc_submit()"></td>
+                
+                <td><button type="button" onclick="clr()">Reset</button></td>
+                
+                <td><input type="submit" name="calc_Copy" value="Copy to Above Form" onclick="copy_to_above_form()"></td>
+            </tr>
+            
+            </table>
+          
+          </fieldset>
+      
+  </body>
+</html>
+
+<!--
+    REUSE CODE FROM HERE:
+    1. <input type="radio" name="vehicle" value="bike"  > Bike
+            <input type="radio" name="vehicle" value="car"  > Car
+            <input type="radio" name="vehicle" value="scooty"  > Scooty</td>
+            
+    2.  <tr>
+                  <td colspan="4"><center>Select Vehicle type:<input type="radio" name="vehicle" value="bike"  > Bike
+                <input type="radio" name="vehicle" value="car"  > Car
+                <input type="radio" name="vehicle" value="scooty"  > Scooty</center></td>
+                <tr>
+
+-->

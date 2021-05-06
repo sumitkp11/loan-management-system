@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Customer Payment</title>
+        <script>
+function get(){
+    document.getElementById("cust_name").value = first;
+  console.log(first); // Foo Bar
+   // ["Hello", "World"]
+}
+
+</script>
+
+
+    </head>
+    <body>
+        
+        
+    <form>
+    <fieldset style="width:0px"><legend>Customer Payment</legend>
+    <table>
+        <tr>
+        <td colspan="3"><center><input type="radio" name="payment_mode" value="cheque">Cheque
+         <input type="radio" name="payment_mode" value="cash">Cash
+         <input type="radio" name="payment_mode" value="online">Online</center></td>
+        </tr>
+                        
+        <tr>
+        <td>Customer:</td> <td><input type="text" id="cust_name" value="" disabled></td>
+        <td><button id ="get_button" onclick="get()">Get Name</button></td>
+        </tr>
+        
+        <tr>
+            <td>Cheque No.</td> <td><input type="text" name ="cheque_no" value="" required></td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+        </table>
+        </fieldset>
+        
+    </form>
+    </body>
+</html>

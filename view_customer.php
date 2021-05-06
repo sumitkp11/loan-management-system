@@ -8,12 +8,14 @@
 function go(){
   // (A) VARIABLES TO PASS
   var first =document.getElementById("person_name").value;
+  var second = document.getElementById("text_cust_id").value;
   // (B) OPEN NEW WINDOW
   // Just pass variables over to new window
   var newwin = window.open("customer_payment.html");
   newwin.onload = function(){
     // "this" refers to newwin
     this.first = first;
+    this.second = second;
   };
 }
 </script>
@@ -45,6 +47,7 @@ if($result = mysqli_query($link, $sql)){
         echo "<table border=\"2\">";
             echo "<tr>";
                 echo "<th>SELECT</th>";
+                echo "<th>CUST. ID</th>";
                 echo "<th>NAME</th>";
                 echo "<th>CONTACT</th>";
                 echo "<th>ADDRESS</th>";
@@ -55,7 +58,7 @@ if($result = mysqli_query($link, $sql)){
                 echo "<th>ART. NO.</th>";
                 echo "<th>AADHAAR</th>";
                 echo "<th>CUTOMER</th>";
-                echo "<th>CUST. ID</th>";
+                
                 echo "<th>MOBILE</th>";
                 echo "<th>TOTAL EMI</th>";
                 echo "<th>TOTAL AMT</th>";
@@ -65,8 +68,10 @@ if($result = mysqli_query($link, $sql)){
             echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             $name = $row['name'];
+            $cust_id = $row['customer_id'];
             echo "<tr>";
                 echo "<td> <center><input type='radio' name='person_name' value='$name' id='person_name'></center> </td>";
+                echo "<td> <center>  <input type='text' id='text_cust_id' value='$cust_id'style='width: 50px;' readonly disabled></center> </td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['contact'] . "</td>";
                 echo "<td>" . $row['address'] . "</td>";
@@ -77,7 +82,7 @@ if($result = mysqli_query($link, $sql)){
                 echo "<td>" . $row['article_no'] . "</td>";
                 echo "<td>" ."<img  src='customer_images/".$row['aadhar_img']."' width='100' height='85' >". "</td>";
                 echo "<td>" ."<img   src='customer_images/".$row['customer_img']."' width='85' height='100' >". "</td>";
-                echo "<td>" . $row['customer_id'] . "</td>";
+                
                 echo "<td>" . $row['mobile_number'] . "</td>";
                 echo "<td>" . $row['total_emi'] . "</td>";
                 echo "<td>" . $row['total_amt'] . "</td>";

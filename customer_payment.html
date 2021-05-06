@@ -4,7 +4,9 @@
         <script>
 function get(){
     document.getElementById("cust_name").value = first;
-  console.log(first); // Foo Bar
+    document.getElementById("unique_id").value = second;
+    
+  console.log(second); // Foo Bar
    // ["Hello", "World"]
 }
 
@@ -15,7 +17,7 @@ function get(){
     <body>
         
         
-    <form>
+    <form action="customer_payment_database.php" method="POST">
     <fieldset style="width:0px"><legend>Customer Payment</legend>
     <table>
         <tr>
@@ -25,12 +27,14 @@ function get(){
         </tr>
                         
         <tr>
-        <td>Customer:</td> <td><input type="text" id="cust_name" value="" disabled></td>
+        <td>Name:</td> <td><input type="text" id="cust_name" value="" disabled></td>
+        <td>Unique ID:</td> <td><input type="text" id="unique_id" value="" disabled></td>
         <td><button id ="get_button" onclick="get()">Get Name</button></td>
         </tr>
         
         <tr>
             <td>Cheque No.</td> <td><input type="text" name ="cheque_no" value="" required></td>
+            <td>Amount Paid:</td> <td><input type="text" name ="amt_paid" value="" required></td>
             <td><input type="submit" value="Submit"></td>
         </tr>
         </table>
